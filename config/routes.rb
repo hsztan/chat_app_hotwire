@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get "posts/index"
-  root "posts#index"
+  root "rooms#index"
+
+  resources :rooms
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
