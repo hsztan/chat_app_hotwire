@@ -18,6 +18,14 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
+
+    respond_to do |format|
+      if @room.save
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.append("rooms", partial: "shared/room", locals: {room: @room})
+        }
+      end
+    end
   end
 
   def update
